@@ -13,11 +13,11 @@ void read_int(int *number);
 
 // Ações
 void mostraFicheiro(const char *ficheiro);
-//void copiaFicheiro(const char *ficheiro);
-//void acrescentaFicheiro(const char *origem, const char *destino);
-//int contaFicheiro(char *ficheiro);
-//void removeFicheiro(const char *ficheiro);
-//int informaFicheiro(char *filename);
-//int lista(char *dir_name);
+void copiaFicheiro(const char *ficheiro);
+void acrescentaFicheiro(const char *origem, const char *destino);
+int contaFicheiro(const char *ficheiro);
+void removeFicheiro(const char *ficheiro);
+void informaFicheiro(const char *ficheiro);
+void listaDiretoria(const char *diretoria);
 
 #endif

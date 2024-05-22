@@ -7,6 +7,8 @@
 int main() {
     int opcao;
     char ficheiro[FICHEIRO_SIZE];
+    char ficheiroSaida[FICHEIRO_SIZE];
+    char diretoria[FICHEIRO_SIZE];
 
     // Menu com as opções
     write_string("Escolha uma opcao:\n");
@@ -29,59 +31,52 @@ int main() {
         case 2:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            //copiaFicheiro(ficheiro);
+            copiaFicheiro(ficheiro);
             break;
 
         case 3:
-        {
-            char ficheiroSaida[FICHEIRO_SIZE];
-
             write_string("Nome ficheiro de entrada: ");
             read_string(ficheiro, FICHEIRO_SIZE);
             write_string("Nome ficheiro de saida: ");
             read_string(ficheiroSaida, FICHEIRO_SIZE);
 
-            //acrescentaFicheiro(ficheiro, ficheiroSaida);
+            acrescentaFicheiro(ficheiro, ficheiroSaida);
             break;
-        }
 
         case 4:
-        {
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
 
-            //int numeroLinhas = contaFicheiro(ficheiro);
+            int numeroLinhas = contaFicheiro(ficheiro);
 
             char resultado[FICHEIRO_SIZE];
-            //snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
-            //write_string(resultado);
+            snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
+            write_string(resultado);
             break;
-        }
 
         case 5:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            //removeFicheiro(ficheiro);
+            removeFicheiro(ficheiro);
             break;
 
         case 6:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            //informaFicheiro(ficheiro);
+            informaFicheiro(ficheiro);
             break;
 
         case 7:
         {
-            char diretoria[FICHEIRO_SIZE];
             write_string("Nome da diretoria: ");
             read_string(diretoria, FICHEIRO_SIZE);
-            //lista(diretoria);
+            listaDiretoria(diretoria);
             break;
         }
             
         default:
             write_string("Opcao invalida! Pressione qualquer tecla para continuar\n");
-            while (getchar() != '\n');  // getchar precisa de <stdio.h>
+            while (getchar() != '\n');
             getchar();
             break;
     }
