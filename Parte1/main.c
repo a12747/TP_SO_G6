@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "funcoes.h"
 
 int main() {
@@ -21,17 +22,18 @@ int main() {
     switch (opcao) {
         case 1:
             write_string("Nome ficheiro: ");
-            read_string(ficheiro, FICHEIRO_SIZE );
+            read_string(ficheiro, FICHEIRO_SIZE);
             mostraFicheiro(ficheiro);
             break;
 
         case 2:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            copiaFicheiro(ficheiro);
+            //copiaFicheiro(ficheiro);
             break;
 
         case 3:
+        {
             char ficheiroSaida[FICHEIRO_SIZE];
 
             write_string("Nome ficheiro de entrada: ");
@@ -39,42 +41,47 @@ int main() {
             write_string("Nome ficheiro de saida: ");
             read_string(ficheiroSaida, FICHEIRO_SIZE);
 
-            acrescentaFicheiro(ficheiro, ficheiroSaida);
+            //acrescentaFicheiro(ficheiro, ficheiroSaida);
             break;
+        }
 
         case 4:
+        {
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
 
-            int numeroLinhas = contaFicheiro(ficheiro);
+            //int numeroLinhas = contaFicheiro(ficheiro);
 
             char resultado[FICHEIRO_SIZE];
-            snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
-            write_string(resultado);
+            //snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
+            //write_string(resultado);
             break;
+        }
 
         case 5:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            removeFicheiro(ficheiro);
+            //removeFicheiro(ficheiro);
             break;
 
         case 6:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-            informaFicheiro(ficheiro);
+            //informaFicheiro(ficheiro);
             break;
 
         case 7:
+        {
             char diretoria[FICHEIRO_SIZE];
             write_string("Nome da diretoria: ");
             read_string(diretoria, FICHEIRO_SIZE);
-            lista(diretoria);
+            //lista(diretoria);
             break;
+        }
             
         default:
             write_string("Opcao invalida! Pressione qualquer tecla para continuar\n");
-            while (getchar() != '\n');
+            while (getchar() != '\n');  // getchar precisa de <stdio.h>
             getchar();
             break;
     }
