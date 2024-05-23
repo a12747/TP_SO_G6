@@ -1,0 +1,11 @@
+gerar nova versão: gcc main.c funcoes.c -o programa
+
+executar: .\programa.exe
+
+opcao 1 -> nome ficheiro a mostrar
+opcao 2 -> nome ficheiro a copiar
+opcao 3 -> nome ficheiro entrada e nome ficheiro de saida
+opcao 4 -> nome de ficheiro para contar linhas
+opcao 5 -> nome ficheiro a remover
+opcao 6 -> nome ficheiro a ver detalhes
+opcao 7 -> diretoria a ver detalhes

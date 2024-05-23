@@ -1,85 +1,82 @@
-#include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 #include "funcoes.h"
 
-
-int main(){
+int main() {
     int opcao;
-    char ficheiro[50];
-    
+    char ficheiro[FICHEIRO_SIZE];
+    char ficheiroSaida[FICHEIRO_SIZE];
+    char diretoria[FICHEIRO_SIZE];
+
     // Menu com as opções
-    printf("Escolha uma opcao:\n"); 
-    printf("1 - Mostrar ficheiro\n");
-    printf("2 - Copiar ficheiro\n");
-    printf("3 - Acrescentar ficheiro\n");
-    printf("4 - Contar linhas do ficheiro\n");
-    printf("5 - Remover ficheiro\n");
-    printf("6 - Informar dados do ficheiro\n");
-    printf("7 - Listar diretoria\n");
-    scanf("%d", &opcao);
+    write_string("Escolha uma opcao:\n");
+    write_string("1 - Mostrar ficheiro\n");
+    write_string("2 - Copiar ficheiro\n");
+    write_string("3 - Acrescentar ficheiro\n");
+    write_string("4 - Contar linhas do ficheiro\n");
+    write_string("5 - Remover ficheiro\n");
+    write_string("6 - Informar dados do ficheiro\n");
+    write_string("7 - Listar diretoria\n");
+    read_int(&opcao);
 
-    switch(opcao){
+    switch (opcao) {
         case 1:
-            printf("Nome ficheiro: ");
-            scanf("%s", ficheiro);
-
+            write_string("Nome ficheiro: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
             mostraFicheiro(ficheiro);
             break;
 
         case 2:
-            printf("Nome ficheiro: ");
-            scanf("%s", ficheiro);
-
+            write_string("Nome ficheiro: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
             copiaFicheiro(ficheiro);
             break;
 
         case 3:
-            char ficheiroSaida[50];
-            
-            printf("Nome ficheiro de entrada: ");
-            scanf("%s", ficheiro);
-            printf("Nome ficheiro de saida: ");
-            scanf("%s", ficheiroSaida);	
-            
+            write_string("Nome ficheiro de entrada: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
+            write_string("Nome ficheiro de saida: ");
+            read_string(ficheiroSaida, FICHEIRO_SIZE);
+
             acrescentaFicheiro(ficheiro, ficheiroSaida);
             break;
 
         case 4:
-            printf("Nome ficheiro: ");
-            scanf("%s", ficheiro);
-            
+            write_string("Nome ficheiro: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
+
             int numeroLinhas = contaFicheiro(ficheiro);
-            
-            printf("O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
+
+            char resultado[FICHEIRO_SIZE];
+            snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
+            write_string(resultado);
             break;
 
         case 5:
-            printf("Nome ficheiro: ");
-            scanf("%s", ficheiro);
-            
+            write_string("Nome ficheiro: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
             removeFicheiro(ficheiro);
             break;
 
         case 6:
-            printf("Nome ficheiro: ");
-            scanf("%s", ficheiro);
-
+            write_string("Nome ficheiro: ");
+            read_string(ficheiro, FICHEIRO_SIZE);
             informaFicheiro(ficheiro);
             break;
 
         case 7:
-            char diretoria[50];
-            
-            printf("Nome da diretoria: ");
-            scanf("%s", diretoria);
-            
-            lista(diretoria);
+        {
+            write_string("Nome da diretoria: ");
+            read_string(diretoria, FICHEIRO_SIZE);
+            listaDiretoria(diretoria);
             break;
-
+        }
+            
         default:
-            printf("Opcao invalida! Pressione qualquer tecla para continuar\n");
-            while(getchar() != '\n');
+            write_string("Opcao invalida! Pressione qualquer tecla para continuar\n");
+            while (getchar() != '\n');
             getchar();
             break;
     }
