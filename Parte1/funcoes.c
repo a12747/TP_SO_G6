@@ -14,6 +14,11 @@
 
 
 // Funções Auxiliares
+void display_prompt() {
+    const char *prompt = "%\n ";
+    write(STDOUT_FILENO, prompt, strlen(prompt));
+}
+
 void write_string(const char *str) {
     write(1, str, strlen(str));
 }
@@ -40,9 +45,7 @@ void mostraFicheiro(const char *ficheiro) {
     // Abre o ficheiro para leitura
     int fd = open(ficheiro, O_RDONLY);
     if (fd == -1) {
-        write_string("Erro: o ficheiro '");
-        write_string(ficheiro);
-        write_string("' nao existe ou nao pode ser aberto.\n");
+        perror("Erro");
         return;
     }
 
@@ -75,7 +78,9 @@ void copiaFicheiro(const char *nome_origem) {
     }
 
     // Abre o ficheiro de cópia para escrita
-    int fd_copia = open("ficheiro.copia", O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+   char nomeCopia[BUFFER_SIZE];
+   	snprintf(nomeCopia,BUFFER_SIZE,"%s.copia",nome_origem);
+    int fd_copia = open(nomeCopia, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
     if (fd_copia == -1) {
         write_string("Erro ao criar o ficheiro de copia.\n");
         close(fd_origem);
@@ -98,14 +103,14 @@ void copiaFicheiro(const char *nome_origem) {
     close(fd_origem);
     close(fd_copia);
 
-    write_string("Copia do ficheiro criada com sucesso como 'ficheiro.copia'.\n");
+    write_string("Copia do ficheiro criada com sucesso como 'NomeOrigem'.copia\n");
 }
 
 void acrescentaFicheiro(const char *origem, const char *destino) {
     // Abre o ficheiro de origem para leitura
     int fd_origem = open(origem, O_RDONLY);
     if (fd_origem == -1) {
-        write_string("Erro: o ficheiro de origem nao pode ser aberto para leitura.\n");
+        perror("Erro");
         return;
     }
 
@@ -141,12 +146,12 @@ void acrescentaFicheiro(const char *origem, const char *destino) {
     write_string("Conteudo da origem acrescentado ao destino com sucesso.\n");
 }
 
-int contaFicheiro(const char *ficheiro) {
+void contaFicheiro(const char *ficheiro) {
     // Abre o ficheiro para leitura
     int fd = open(ficheiro, O_RDONLY);
     if (fd == -1) {
-        write_string("Erro: o ficheiro nao pode ser aberto para leitura.\n");
-        return -1;
+        perror("Erro");
+        return;
     }
 
     int num_linhas = 0;
@@ -166,13 +171,14 @@ int contaFicheiro(const char *ficheiro) {
     if (bytes_lidos == -1) {
         write_string("Erro ao ler o ficheiro.\n");
         close(fd);
-        return -1;
     }
 
     // Fecha o ficheiro
     close(fd);
+    char print[BUFFER_SIZE];
+    snprintf(print, sizeof(print), "Linhas do ficheiro: %d\n", num_linhas);
+    write_string(print);
 
-    return num_linhas;
 }
 
 void removeFicheiro(const char *ficheiro) {
@@ -247,7 +253,7 @@ void listaDiretoria(const char *diretoria) {
 
     // Abre a diretoria
     if ((dir = opendir(diretoria)) == NULL) {
-        write_string("Erro: não foi possível abrir a diretoria.\n");
+        perror("Erro");
         return;
     }
 

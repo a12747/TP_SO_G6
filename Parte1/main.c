@@ -46,12 +46,7 @@ int main() {
         case 4:
             write_string("Nome ficheiro: ");
             read_string(ficheiro, FICHEIRO_SIZE);
-
-            int numeroLinhas = contaFicheiro(ficheiro);
-
-            char resultado[FICHEIRO_SIZE];
-            snprintf(resultado, FICHEIRO_SIZE, "O ficheiro %s tem %d linhas.\n", ficheiro, numeroLinhas);
-            write_string(resultado);
+            contaFicheiro(ficheiro);
             break;
 
         case 5:
