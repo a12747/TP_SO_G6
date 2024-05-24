@@ -1,5 +1,5 @@
 #include "header.h"
-oid mostraFicheiro(const char *ficheiro) {
+void mostraFicheiro(const char *ficheiro) {
     // Abre o ficheiro para leitura
     int fd = open(ficheiro, O_RDONLY);
     if (fd == -1) {
