@@ -27,7 +27,7 @@ void read_int(int *number);
 void mostraFicheiro(const char *ficheiro);
 void copiaFicheiro(const char *ficheiro);
 void acrescentaFicheiro(const char *origem, const char *destino);
-int contaFicheiro(const char *ficheiro);
+void contaFicheiro(const char *ficheiro);
 void removeFicheiro(const char *ficheiro);
 void informaFicheiro(const char *ficheiro);
 void listaDiretoria(const char *diretoria);

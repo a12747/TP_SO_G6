@@ -17,7 +17,7 @@ int main(int argc, char *argv[]){
         } else if (strcmp(argv[1], "acrescenta") == 0 && argc==4) {
             acrescentaFicheiro(argv[2], argv[3]);
         } else if (strcmp(argv[1], "conta") == 0 && argc==3) {
-	    contaFicheiro(argv[2]);
+	        contaFicheiro(argv[2]);
         } else if (strcmp(argv[1], "apaga") == 0 && argc==3) {
             removeFicheiro(argv[2]);
         } else if (strcmp(argv[1], "informa") == 0 && argc==3) {
